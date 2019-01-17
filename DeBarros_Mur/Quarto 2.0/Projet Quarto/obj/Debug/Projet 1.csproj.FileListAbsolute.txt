@@ -1,0 +1,12 @@
+H:\1A\Info\Quarto\Projet 1\bin\Debug\Projet 1.exe.config
+H:\1A\Info\Quarto\Projet 1\bin\Debug\Projet 1.exe
+H:\1A\Info\Quarto\Projet 1\bin\Debug\Projet 1.pdb
+H:\1A\Info\Quarto\Projet 1\obj\Debug\Projet 1.csprojResolveAssemblyReference.cache
+H:\1A\Info\Quarto\Projet 1\obj\Debug\Projet 1.exe
+H:\1A\Info\Quarto\Projet 1\obj\Debug\Projet 1.pdb
+H:\Quarto\Quarto\Projet 1\bin\Debug\Projet 1.exe.config
+H:\Quarto\Quarto\Projet 1\obj\Debug\Projet 1.exe
+H:\Quarto\Quarto\Projet 1\obj\Debug\Projet 1.pdb
+H:\Quarto\Quarto\Projet 1\bin\Debug\Projet 1.exe
+H:\Quarto\Quarto\Projet 1\bin\Debug\Projet 1.pdb
+H:\Quarto\Quarto\Projet 1\obj\Debug\Projet 1.csprojResolveAssemblyReference.cache

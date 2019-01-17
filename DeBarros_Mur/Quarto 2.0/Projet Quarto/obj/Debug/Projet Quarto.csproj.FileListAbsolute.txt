@@ -1,0 +1,3 @@
+H:\Quarto\Quarto\Projet 1\bin\Debug\Projet 1.exe.config
+H:\Quarto\Quarto\Projet 1\obj\Debug\Projet 1.exe
+H:\Quarto\Quarto\Projet 1\obj\Debug\Projet 1.pdb
