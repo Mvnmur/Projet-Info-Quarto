@@ -16,13 +16,13 @@ namespace Projet_1
             do //Boucle do while pour vérifier la validité de l'entrée utilisateur (Pile ou Face)
             {
                 Console.WriteLine("\nVeuillez choisir un côté : Pile ou Face ?");
-                pieceMonnaie = Console.ReadLine();
-                if (pieceMonnaie != "Pile" && pieceMonnaie != "pile" && pieceMonnaie != "Face" && pieceMonnaie != "face") Console.WriteLine("\nCommande invalide.");
+                pieceMonnaie = Console.ReadLine().ToUpper();
+                if (pieceMonnaie != "PILE" && pieceMonnaie != "FACE") Console.WriteLine("\nCommande invalide.");
             }
-            while (pieceMonnaie != "Pile" && pieceMonnaie != "pile" && pieceMonnaie != "Face" && pieceMonnaie != "face");
+            while (pieceMonnaie != "PILE" && pieceMonnaie != "FACE");
             //Si l'entrée utilisateur est Pile renvoie 0 si c'est Face renvoie 1 puis génère un nombre aléatoire entre 0 et 1 et compare les deux. Si pareil ==> Utilisateur joue en premier sinon joue en second.
-            if (pieceMonnaie == "Pile" && pieceMonnaie == "pile") facePiece = 0;
-            else if (pieceMonnaie == "Face" && pieceMonnaie == "face") facePiece = 1;
+            if (pieceMonnaie == "PILE") facePiece = 0;
+            else if (pieceMonnaie == "FACE") facePiece = 1;
             facePieceRnd = rnd.Next(0, 2);
             if (facePiece == facePieceRnd)
             {
@@ -44,7 +44,7 @@ namespace Projet_1
         public static string affichePiece(string piece)
         {
             Console.OutputEncoding = Encoding.GetEncoding("unicode");
-            switch (piece.ToUpper()) //Encodage de chaque modèle graphique de pièce
+            switch (piece) //Encodage de chaque modèle graphique de pièce
             {
                 case "BCGV":
                     piece = ("[[O]]");
@@ -129,20 +129,20 @@ namespace Projet_1
                 pieceChoisie = Console.ReadLine().ToUpper(); //Demande une pièce au joueur
                 for (int i = 0; i < Pieces.Length; i++) //Cherche si celle-ci se trouve dans les pièces disponibles
                 {
-                    if (pieceChoisie.ToUpper() == Pieces[i])
+                    if (pieceChoisie == Pieces[i])
                     {
                         isin = true;
                         ind = i;
                     }
                 }
-                if (pieceChoisie.ToUpper() == "QUARTO")
+                if (pieceChoisie == "QUARTO")
                 {
                     if (QuartoPos() == true)
                         return "win";
                 }
-                if (isin == false && pieceChoisie.ToUpper()!="QUARTO")
+                if (isin == false && pieceChoisie!="QUARTO")
                     Console.WriteLine("La commande est invalide ou la pièce a déjà été jouée, veuillez recommencer.");
-                if (isin == false && pieceChoisie.ToUpper() == "QUARTO")
+                if (isin == false && pieceChoisie == "QUARTO")
                     Console.WriteLine("Le QUARTO est invalide, veuillez rééssayer ou choisir une pièce valide.");
             } while (isin == false);
             string[] nvtab = new string[Pieces.Length - 1]; //Retire la pièce des pièces disponibles
@@ -195,37 +195,37 @@ namespace Projet_1
             {
                 placevalide = false;
                 Console.WriteLine("\nVeuillez entrer un emplacement de case libre où placer la pièce (sous le format \"LETTREchiffre\") :");
-                string place = Console.ReadLine(); //Demande un emplacement
+                string place = Console.ReadLine().ToUpper(); //Demande un emplacement
                 if (place.ToUpper() == "QUARTO") //On peut entrer QUARTO afin de gagner si la pièce dont on dispose permet de faire un quarto
                     return QuartoJoueur(piece, Plateau);
 
                 if (place.Length == 2) //Vérification préliminaire de la syntaxe
                 {
-                    if ((place.ToUpper()[0] == 'A' || place.ToUpper()[0] == 'B' || place.ToUpper()[0] == 'C' || place.ToUpper()[0] == 'D') && (place[1] == '1' || place[1] == '2' || place[1] == '3' || place[1] == '4'))
+                    if ((place[0] == 'A' || place[0] == 'B' || place[0] == 'C' || place[0] == 'D') && (place[1] == '1' || place[1] == '2' || place[1] == '3' || place[1] == '4'))
                     {
                         placevalide = true;
-                        if ((place.ToUpper()[0] == 'A') && (int)Char.GetNumericValue(place[1]) < 5) //Vérification de la disponibilité de la place sélectionnée
+                        if ((place[0] == 'A') && (int)Char.GetNumericValue(place[1]) < 5) //Vérification de la disponibilité de la place sélectionnée
                         {
                             i = 0;
                             j = (int)Char.GetNumericValue(place[1]) - 1;
                             if (Plateau[j, i] is string)
                                 placevalide = false;
                         }
-                        else if ((place.ToUpper()[0] == 'B') && (int)Char.GetNumericValue(place[1]) < 5)
+                        else if ((place[0] == 'B') && (int)Char.GetNumericValue(place[1]) < 5)
                         {
                             i = 1;
                             j = (int)Char.GetNumericValue(place[1]) - 1;
                             if (Plateau[j, i] is string)
                                 placevalide = false;
                         }
-                        else if ((place.ToUpper()[0] == 'C') && (int)Char.GetNumericValue(place[1]) < 5)
+                        else if ((place[0] == 'C') && (int)Char.GetNumericValue(place[1]) < 5)
                         {
                             i = 2;
                             j = (int)Char.GetNumericValue(place[1]) - 1;
                             if (Plateau[j, i] is string)
                                 placevalide = false;
                         }
-                        else if ((place.ToUpper()[0] == 'D') && (int)Char.GetNumericValue(place[1]) < 5)
+                        else if ((place[0] == 'D') && (int)Char.GetNumericValue(place[1]) < 5)
                         {
                             i = 3;
                             j = (int)Char.GetNumericValue(place[1]) - 1;
@@ -552,10 +552,11 @@ namespace Projet_1
             }
             if (win == true)
             {
-                Console.WriteLine("VICTOIRE!!!");
+                Console.WriteLine("Félicitations ! Vous avez gagné !");
                 return true;
             }
             else
+                Console.WriteLine("Le QUARTO est invalide, veuillez rééssayer ou choisir une pièce à donner.");
                 return false;
         }
 
@@ -1102,8 +1103,8 @@ namespace Projet_1
             bool commence; //variable permettant de savoir qui commence
             Console.WriteLine("\n================================== QUARTO ======================================");
             Console.WriteLine("Bienvenue dans Quarto, si vous souhaitez afficher les règles veuillez taper R. \nSinon, veuillez appuyer sur Entrée pour commencer à jouer.");
-            regle = Console.ReadLine();
-            if (regle == "R" || regle == "r") Console.WriteLine("\n================================================================================\nRègle de base : \n\nAlignez quatre pièces ayant une caractéristique commune pour gagner.\n\nComment jouer ?\n\nA chaque tour, un joueur choisi une pièce et la donne à son adversaire qui doit la placer sur le plateau.\n\nPIECES :\nLes pièces ont 4 caractéristiques distinctes : \n- Noir ou Blanc noté N ou B\n- Rond ou Carré noté R ou C\n- Grand ou Petit noté G ou P\n- Vide ou Entier noté V ou E\n\nPour choisir une pièce il faut donc la nommer grâce à ses lettres.\nPar exemple pour prendre la pièce Blanche, Ronde, Petite et Vide on tapera BRPV.\n\nPLATEAU :\nLe plateau est composé de 16 cases notées de A1 à D4.\nUne fois la pièce choisie par le premier joueur, le deuxième doit la placer sur le plateau.\nPour se faire il tape la position à laquelle il souhaite la déposer.\n\nExemple :\nB2\n\nVICTOIRE :\nPour gagner il faut annoncer QUARTO pendant son tour puis placer la pièce donnée et désigner quelle ligne, colonne ou bissectrice permet la victoire. Pour cela, vous devez taper QUARTO puis le numéro ou la lettre de la ligne.\n\nExemple : \nQUARTO\nC\n\nSi le plateau est rempli avant qu'un des deux joueurs ne reussisse un QUARTO! la partie se termine sur une égalité.\n================================================================================");
+            regle = Console.ReadLine().ToUpper();
+            if (regle == "R") Console.WriteLine("\n================================================================================\nRègle de base : \n\nAlignez quatre pièces ayant une caractéristique commune pour gagner.\n\nComment jouer ?\n\nA chaque tour, un joueur choisi une pièce et la donne à son adversaire qui doit la placer sur le plateau.\n\nPIECES :\nLes pièces ont 4 caractéristiques distinctes : \n- Noir ou Blanc noté N ou B\n- Rond ou Carré noté R ou C\n- Grand ou Petit noté G ou P\n- Vide ou Entier noté V ou E\n\nPour choisir une pièce il faut donc la nommer grâce à ses lettres.\nPar exemple pour prendre la pièce Blanche, Ronde, Petite et Vide on tapera BRPV.\n\nPLATEAU :\nLe plateau est composé de 16 cases notées de A1 à D4.\nUne fois la pièce choisie par le premier joueur, le deuxième doit la placer sur le plateau.\nPour se faire il tape la position à laquelle il souhaite la déposer.\n\nExemple :\nB2\n\nVICTOIRE :\nPour gagner il faut annoncer QUARTO pendant son tour puis placer la pièce donnée et désigner quelle ligne, colonne ou bissectrice permet la victoire. Pour cela, vous devez taper QUARTO puis le numéro ou la lettre de la ligne.\n\nExemple : \nQUARTO\nC\n\nSi le plateau est rempli avant qu'un des deux joueurs ne reussisse un QUARTO! la partie se termine sur une égalité.\n================================================================================");
             Console.WriteLine("\nPour commencer on lance une pièce pour déterminer quel joueur jouera en premier.");
             commence = lancerPieceMonnaie(); //On décide celui qui commence à pile ou face
             if (commence == true) //Si le joueur gagne, il commence
